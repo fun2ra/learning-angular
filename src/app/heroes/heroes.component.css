@@ -1,3 +1,35 @@
 h4 {
     color: dodgerblue;
 }
+
+li {
+    cursor: pointer;
+    margin: 10px 0px;
+    list-style-type: none;
+    width: 250px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    font-size: 22px;
+    background-color: honeydew;
+    color: #666666;
+}
+
+.badge {
+    color: #162430;
+    font-weight: 600;
+    width: 48px;
+    background-color: grey;
+    height: 100%;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px 0px 0px 6px;
+}
+
+.selected-hero {
+    background-color: #111111;
+    color: #eeeeee;
+}
