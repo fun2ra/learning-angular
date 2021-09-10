@@ -1,0 +1,15 @@
+button {
+    height: 32px;
+    font-size: 14px;
+    background-color: #162430;
+    color: #eeeeee;
+    font-family: sans-serif;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.message {
+    line-height: 32px;
+    font-size: 18px;
+    font-weight: 500;
+}
