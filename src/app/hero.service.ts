@@ -21,9 +21,8 @@ export class HeroService {
     if (!id) return of(undefined);
 
     const h = of(heroes.find(hero => hero.id === id));
+    this.messageService.add(`HeroService: fetched Hero id: ${id}`);
     return h;
-
-    
   }
 
 }
