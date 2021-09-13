@@ -3,9 +3,12 @@ h4 {
 }
 
 li {
+    list-style-type: none;
+}
+
+li > a {
     cursor: pointer;
     margin: 10px 0px;
-    list-style-type: none;
     width: 250px;
     height: 48px;
     display: flex;

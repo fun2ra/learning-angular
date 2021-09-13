@@ -23,6 +23,7 @@ export class HeroesComponent implements OnInit {
   onSelect(h: Hero): void {
     this.selected_hero = h;
     this.messageService.add(`The ${h.name} Hero has been selected!`);
+    // window.location.href = `/detail/${h.id}`;
   }
 
   ngOnInit(): void {
