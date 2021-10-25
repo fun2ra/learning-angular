@@ -1,5 +1,3 @@
-#gragejs-container {
-    /* min-width: 320px; */
-    min-height: 120px;
-    /* border: solid 1px red; */
+.parcel {
+    margin: 20px auto;
 }

@@ -25,7 +25,6 @@ export class GrapejsComponent implements OnInit {
       panels: {},
       style: 'p{color: blue}'
     });
-    editor.render();
   }
 
 }
