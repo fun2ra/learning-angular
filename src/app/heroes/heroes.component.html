@@ -1,6 +1,6 @@
 <div>
-    <!-- <app-hero-detail [hero]="selected_hero"></app-hero-detail> -->
     <h2>All heroes!</h2>
+    <div *ngIf="!list_heroes.length">loading...</div>
     <ul class="list_heroes">
         <li *ngFor="let hero of list_heroes" (click)="onSelect(hero)" [class.selected-hero]="hero === selected_hero">
             <a routerLink='/detail/{{hero.id}}' routerLinkActive="router-link-active" >

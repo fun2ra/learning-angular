@@ -3,26 +3,70 @@ import { Hero } from "src/app/hero";
 import { heroes } from "src/app/mock-heroes";
 import { Observable, of } from "rxjs";
 import { MessagesService } from "./messages.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  constructor(private messageService: MessagesService) { }
+  constructor(
+    private messageService: MessagesService,
+    private http: HttpClient
+  ) { }
 
-  getHeroes (): Observable<Hero[]> {
-    const h = of(heroes);
-    this.messageService.add('HeroService: fetched heroes');
-    return h;
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
   }
 
-  getHeroById (id: Number): Observable<Hero | undefined> {
+  private heroesUrl = 'api/heroes';  // URL to web api
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  getHeroes(): Observable<Hero[]> {
+    this.log('fetched heroes');
+    return this.http.get<Hero[]>(this.heroesUrl).pipe(
+      catchError(this.handleError<Hero[]>('getHeroes', []))
+    );
+  }
+
+  getHeroById(id: Number): Observable<Hero | undefined> {
     if (!id) return of(undefined);
 
     const h = of(heroes.find(hero => hero.id === id));
-    this.messageService.add(`HeroService: fetched Hero id: ${id}`);
+    this.log(`fetched Hero id: ${id}`);
     return h;
+  }
+
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`update hero ${hero.id}`)),
+      catchError(this.handleError<Hero[]>('updatehero', []))
+    )
   }
 
 }

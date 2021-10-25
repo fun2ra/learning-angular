@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeroesComponent } from 'src/app/heroes/heroes.component';
 import { DashboardComponent } from "src/app/dashboard/dashboard.component";
 import { HeroDetailComponent } from "src/app/hero-detail/hero-detail.component";
+import { GrapejsComponent } from "src/app/grapejs/grapejs.component";
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'grapejs', component: GrapejsComponent },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
